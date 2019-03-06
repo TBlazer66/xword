@@ -1,0 +1,39 @@
+ </div> 
+
+</div> <!-- end #wrapper -->
+
+
+
+
+
+	</body>
+
+
+</a> </span> <span class="button"> <a title="Next in tour" href="/pages/mad_2.php"> Next <span class="arrows"> &nbsp;&#187; </span> </a> </span>
+
+
+	<div class="site_footer">
+<p>
+
+	<a href="/">Home</a>
+	<a href="/pages/about/">About</a>
+	<a href="/pages/contact">Contact</a>
+        <a href="/pages/links">Links</a>
+	<a href="/pages/portfolio">Portfolio</a>
+</p>           
+</div> 
+
+<div class="jigsaw">
+<p>
+
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px;"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!" />
+</a>
+</p>
+</div> 
+
+</html>
+
+

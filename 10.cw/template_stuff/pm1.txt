@@ -1,0 +1,151 @@
+<p> Hello Monks</p>
+<p> </p>
+<p>I use perl to generate html pages and content within them, with a templating system that I have been doggedly improving over the course of events.  Recent versions have included cyrillic captions, for example, and I learned a lot in simply achieving the capability.</p>
+
+<p>Previous versions have used Text::Template to make text substitutions, but I wanted to try to achieve it with a handwritten version that has an appropriate control and regex, with all the flexibility of using hashes.  Let me post the script before continuing...</p>
+<code>#!/usr/bin/perl -w
+use strict;
+use 5.010;
+use lib "template_stuff";
+use football1;
+use football2;
+use utils1;
+use Cwd;
+use File::Basename; 
+use Net::FTP;
+use Path::Class;
+use File::Slurp;
+use File::Spec;
+
+# initializations that must precede main data structure
+my $ts = "template_stuff";
+my $images = "aimages";
+my $captions = "captions";
+my $ruscaptions = "ruscaptions";
+my $bom = "bom";
+my $current = cwd; 
+my $rd1 = dir($current);
+my @a = $rd1->dir_list();
+my $srd1 = $rd1->stringify;
+my $title = $rd1->basename;
+say "title is $title";
+# get headline from stdin
+say "Give me a headline:  ";
+my $headline = <STDIN>;
+my $rd2 = dir(@a,$ts,$images);
+my $to_images = $rd2->stringify;
+my $rd3 = dir(@a,$ts,$captions);
+my $to_captions = $rd3->stringify;
+my $rd4 = dir(@a,$ts,$ruscaptions);
+my $rus_captions = $rd4->stringify;
+my $rd5 = dir(@a,$ts,$bom);
+my $bom_dir = $rd5->stringify;
+
+# page params
+my %vars = (
+   title => $title,
+   headline => $headline,
+   place => 'Oakland',
+   css_file => "${title}1.css",
+   header => file($ts,"hc_input2.txt"),
+   footer => file($ts,"footer_center2.txt"),
+   css_local => file($ts,"${title}1.css"),
+   body => file($ts,"rebus4.tmpl"),
+   print_script => "1",
+   code_tmpl=> file($ts,"code1.tmpl"), 
+   oitop=> file($ts,"oitop.txt"),  
+   oibottom=> file($ts,"oibottom.txt"), 
+   to_images => $to_images,
+   eng_captions => $to_captions,
+   rus_captions =>  $rus_captions,
+   bottom => file($ts,"bottom1.txt"),
+   words => file($bom_dir, "words1.txt"),
+   subs  => file($bom_dir, "substitutions1.txt"),
+   source => file($bom_dir, "nephi1.txt"),
+   chapter => 'Lemuel',
+        );
+#create html page
+my $rvars = \%vars;
+my $rftp = get_ftp_object();
+my $html_file = get_html_filename($rftp);
+my $fh = create_html_file ($html_file);
+my $remote_dir = $html_file;
+$remote_dir =~ s/\.html$//;
+say "remote_dir is $remote_dir";
+$vars{remote_dir}= $remote_dir;
+# create header
+my $rhdr = write_header($rvars);
+print $fh $$rhdr;
+# print content to file
+#say "arg1 is $vars{'words'}";
+#say "arg2 is $vars{'subs'}";
+my $word_hash_ref = hashify_words($vars{'words'},$vars{'subs'});
+say "in main";
+my %hash = %$word_hash_ref;
+#my $re = keys_to_regex(%hash);
+#print "match\n" if $name =~ /^$re$/;
+# main control
+my $check = join '|', keys %hash;
+
+open(my $hh, "<:encoding(UTF-8)", $vars{'source'})
+    || die "can't open UTF-8 encoded filename: $!";
+while(<$hh>){
+chomp;
+say "default is $_";
+$_ =~ s/($check)/$hash{$1}/gi;
+say "$_";
+}
+__END__ </code>
+
+<code>
+$ perl mango1.pl 
+title is mango
+Give me a headline:  
+perlmonks
+old num is 0
+remote_dir is mango1
+file1 is /home/fred/Desktop/root3/pages/mango/template_stuff/bom/words1.txt
+file2 is /home/fred/Desktop/root3/pages/mango/template_stuff/bom/substitutions1.txt
+keys are Nephi  Lehi  Jews  Zedekiah  Jerusalem  Judah
+values are Rory Calhoun Mr. Burns the Homeland the Pentagon Washington the USA
+-----
+subroutine says this is your hash: 
+key: Zedekiah , value: the Pentagon
+key: Judah, value: the USA
+key: Jerusalem , value: Washington
+key: Lehi , value: Mr. Burns
+key: Jews , value: the Homeland
+key: Nephi , value: Rory Calhoun
+</code>
+<p> 
+From about here on up, so good so far.  Without boring you with the rest of the output, it's simply very patchy in weird ways.  I think I need to take a step back to the hashify_words subroutine, which is pretty hot off the press for me and needs some protections against bad things happening, for example creating an extra hash entry from extraneous whitespace.  Right now that looks like this:
+</p>
+<code>sub hashify_words  {
+use strict;
+use warnings;
+use 5.010;
+use File::Slurp;
+use List::MoreUtils qw( zip );
+
+my ($file1, $file2) = @_;
+say "file1 is $file1";
+say "file2 is $file2";
+
+my @file1lines = read_file($file1);
+my @file2lines = read_file($file2);
+chomp(@file1lines); 
+chomp(@file2lines); 
+say "keys are @file1lines";
+say "values are @file2lines";
+
+my %hash = zip @file1lines, @file2lines;
+say "-----";
+print_hash(\%hash);
+return \%hash;
+}
+</code>
+
+<p> 
+Again, the actual output is spotty, with some words not being spaced right.  Happy tp hear any constructive comment, SD
+</p>
+

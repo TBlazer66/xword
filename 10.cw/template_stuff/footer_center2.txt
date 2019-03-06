@@ -1,0 +1,26 @@
+ 
+
+	
+	<div class="site_footer">
+
+	<a href="/pages/home1.html">Home</a>
+	<a href="/pages/about1.html">About</a>
+	<a href="/pages/contact1.html">Contact</a>
+       	<a href="/pages/portfolio1.html">Portfolio</a>
+	<a href="/pages/resume1.html">Resum&egrave;</a>
+        
+</div> 
+
+</div> <!-- end #wrapper -->
+
+<div class="jigsaw">
+
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px;"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!" />
+</a>
+
+</div> 
+</body>
+

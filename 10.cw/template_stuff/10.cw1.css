@@ -1,0 +1,155 @@
+html {
+margin : .3em;
+padding : .3em;
+color: black
+}
+
+body {
+background: #299a0b; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover,  #299a0b 0%, #0e56b5 51%, #299a0b 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#299a0b), color-stop(51%,#0e56b5), color-stop(100%,#299a0b)); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  #299a0b 0%,#0e56b5 51%,#299a0b 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  #299a0b 0%,#0e56b5 51%,#299a0b 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  #299a0b 0%,#0e56b5 51%,#299a0b 100%); /* IE10+ */
+background: radial-gradient(ellipse at center,  #299a0b 0%,#0e56b5 51%,#299a0b 100%); /* W3C */
+ 
+}
+a:link {
+text-decoration : underline;
+color : navy;
+}
+a:visited {
+text-decoration : none;
+color : maroon;
+}
+a:hover, a:active {
+color:white;
+}
+
+.wrapper img{
+width:75%;
+margin-left : auto;
+margin-right : auto;
+max-width: 90%;
+display : block;
+border-radius : 1em;
+}
+
+h1,h2,h3{
+margin-left : auto;
+margin-right : auto;
+clear: left;
+text-align : center;
+}
+
+p{
+display:block;
+font-family:"Times New Roman",Georgia,Serif;
+font-weight: 700;
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+font-size: 1.5em;
+padding:.3em .5em .3em .5em;
+}
+.outer {
+background-color:white;
+margin-left : auto;
+margin-right : auto;
+border-radius : 1em;
+clear: left;
+margin-top: .7em;
+margin-bottom: .7em;
+max-width:25%;
+display:block;
+
+}
+
+.hft-lines {
+background-color:white;
+margin-left : auto;
+margin-right : auto;
+border-radius : 1em;
+clear: left;
+margin-top: .7em;
+margin-bottom: .7em;
+max-width:85%;
+display:block;
+text-align:center;
+font-size: 1.5em;
+
+}
+
+
+.site_footer {
+color : aqua;
+display: block;
+clear: left;
+text-align:center;
+word-spacing: 2em;
+width:65%;
+margin-left:auto;
+margin-right:auto;
+font-weight:600;
+}
+
+.jigsaw {
+clear: left;
+margin-left:auto;
+margin-right:auto;
+float: right;
+}
+
+.origin {
+clear: left;
+margin-left:5%;
+margin-right:auto;
+float: left;
+border-radius : 1em;
+padding : .2em;
+background-color : white;
+margin-bottom: 2em;
+}
+
+
+
+#parent {	
+clear: left;
+margin: 0 auto;
+display: inline-block;
+text-align: center;
+width: 50%;
+}
+
+.child {
+width: 20%;
+vertical-align: middle;
+display: inline-block;
+
+}
+
+.write_script {
+margin-left : auto;
+margin-right : auto;
+clear: left;
+max-width:50%;
+display:block;
+white-space:pre;
+font-weight:400;
+
+}
+
+.write_module {
+margin-left : auto;
+margin-right : auto;
+clear: left;
+max-width:50%;
+display:block;
+white-space:pre;
+font-weight:400;
+}
+
+
+
+
+

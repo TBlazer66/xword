@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/css/{$css_file}"/>
+<title>{$title}</title>
+</head>
+  <body>
+      <div class="wrapper">
+  <div class = origin>
+  <h3>{$place}, {$date}</h3>
+  </div>
+<h1>{$headline}</h1>
